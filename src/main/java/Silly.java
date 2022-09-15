@@ -1,3 +1,4 @@
+import java.security.KeyStore;
 import java.util.Arrays;
 
 /**
@@ -80,9 +81,16 @@ public class Silly implements Comparable<Silly>{
      *       Make sure you document this method!
      */
 
-
-
-
+    /**
+     * Creates a new silly object that is the concatenation of 2 strings.
+     * This constructor takes in two Strings as arguments.
+     *
+     * @param s1 the first string to concatenate
+     * @param s2 the second string to concatenate
+     */
+    public Silly (String s1, String s2) {
+        this.name = s1 + s2;
+    }
 
     public static void main(String[] args) {
         /**
@@ -116,7 +124,7 @@ public class Silly implements Comparable<Silly>{
         y.countStatic();
         x.countStatic();
         x.countStatic();
-        int[] expected_values = {};
+        int[] expected_values = {1, 2, 3, 4};
 
         System.out.println("The countStatic calls will return " + Arrays.toString(expected_values));
     }
@@ -133,7 +141,7 @@ public class Silly implements Comparable<Silly>{
      */
     @Override
     public String toString(){
-        // TODO (Task 3): Implement the body of this method!
+        return this.name;
     }
 
     /**
@@ -158,6 +166,12 @@ public class Silly implements Comparable<Silly>{
         }
 
         Silly other = (Silly) o; // To access .name of o, we need to cast it.
+
+        if (other.name.equals(this.name)){
+            return true;
+        } else {
+            return false;
+        }
 
         // Hint: to compare strings, we need to use .equals()
         //       e.g. s1.equals(s2)
@@ -194,6 +208,19 @@ public class Silly implements Comparable<Silly>{
          *                You can get the length of a string by using the
          *                .length() method.
          */
+
+        int this_length = this.name.length();
+        int other_length = other.name.length();
+
+        if (this_length >= other_length) {
+            if (this_length == other_length) {
+                return 0;
+            } else {
+                return 1;
+            }
+        } else {
+            return -1;
+        }
     }
 
     /*
@@ -206,4 +233,5 @@ public class Silly implements Comparable<Silly>{
      *                accordingly.
      */
 }
+
 
